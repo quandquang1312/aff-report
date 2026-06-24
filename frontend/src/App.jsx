@@ -2,6 +2,15 @@ import { useMemo, useState } from "react";
 import "./App.css";
 const API_URL = import.meta.env.VITE_API_URL;
 
+function CopyableNumber({ value }) {
+    const display = value.toLocaleString();
+    return (
+        <span className="copyable-number" data-display={display}>
+            {value}
+        </span>
+    );
+}
+
 export default function App() {
     const [adsFile, setAdsFile] = useState(null);
     const [shopeeFiles, setShopeeFiles] = useState([]);
@@ -221,7 +230,7 @@ export default function App() {
                                                             {typeof value === "number"
                                                                 ? column === "profit"
                                                                     ? `${value.toFixed(2)}%`
-                                                                    : value.toLocaleString()
+                                                                    : <CopyableNumber value={value} />
                                                                 : column === "profit"
                                                                     ? `${Number(value || 0).toFixed(2)}%`
                                                                     : value}

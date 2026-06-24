@@ -205,3 +205,13 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* Ẩn số thuần, hiển thị số có dấu phẩy từ attribute */
+.copyable-number {
+  font-size: 0;
+}
+
+.copyable-number::before {
+  content: attr(data-display);
+  font-size: 14px;
+}
