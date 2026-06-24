@@ -107,7 +107,7 @@ export default function App() {
     return (
         <div className="app">
             <div className="container">
-                <h2 className="page-title">Commission Report Analysis</h2>
+                <h2 className="page-title">Commission Analysis</h2>
 
                 {/* Ads File Upload */}
                 <div className="panel">
