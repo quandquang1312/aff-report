@@ -109,12 +109,12 @@ export default function App() {
     return (
         <div className="app">
             <div className="container">
-                <h2 className="page-title">📊 Report Upload Dashboard</h2>
+                <h2 className="page-title">Commission Report Analysis</h2>
 
                 {/* Ads File Upload */}
                 <div className="panel">
                     <div className="panel-row">
-                        <label className="panel-label">📄 Ads File:</label>
+                        <label className="panel-label">📄 Ads Report File:</label>
                         <div className="file-inline">
                             <input
                                 type="file"
@@ -127,7 +127,7 @@ export default function App() {
 
                 {/* Shopee Files Upload */}
                 <div className="panel">
-                    <label className="panel-label">📊 Shopee Report Files:</label>
+                    <label className="panel-label">📊 Conversion Report Files:</label>
 
                     {shopeeFiles.map((file, index) => (
                         <div key={index} className="shopee-row">
@@ -150,7 +150,7 @@ export default function App() {
 
                     <div className="center">
                         <button onClick={addShopeeFile} className="btn btn-success">
-                            + Add Shopee File
+                            + Add Conversion Report File
                         </button>
                     </div>
                 </div>
