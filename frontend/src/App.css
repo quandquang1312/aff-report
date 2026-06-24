@@ -213,5 +213,5 @@
 
 .copyable-number::before {
   content: attr(data-display);
-  font-size: 14px;
+  font-size: 18px;
 }
