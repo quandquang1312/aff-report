@@ -27,7 +27,7 @@ def get_ads_by_subid(file_path):
             "Số tiền đã chi tiêu (VND)": "ads"
         }
     )
-    df_selected["sub_id"] = df_selected["sub_id"].astype(str).str.split("_").str[0]
+    df_selected["sub_id"] = df_selected["sub_id"].astype(str).str.split(r"[_ ]", n=1, regex=True).str[0]
 
     result = (
         df_selected.groupby("sub_id")["ads"]
@@ -56,7 +56,6 @@ def merge_data(ads, *commissions):
         )
 
     df_combined["sub_id"] = df_combined["sub_id"].fillna("").astype(str)
-    # Profit margin = (Hoa hồng - ads) / Hoa hồng * 100
     df_combined["profit"] = (
         ((df_combined["Hoa hồng"] * 0.8) - (df_combined["ads"] * 1.011))
         / df_combined["Hoa hồng"].replace(0, pd.NA)
