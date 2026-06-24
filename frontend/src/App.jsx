@@ -86,7 +86,7 @@ export default function App() {
         setLoading(true);
 
         try {
-            const res = await fetch("http://127.0.0.1:8000/analyze", {
+            const res = await fetch("https://aff-report.onrender.com/analyze", {
                 method: "POST",
                 body: formData,
             });
