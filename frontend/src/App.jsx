@@ -87,7 +87,7 @@ export default function App() {
         setLoading(true);
 
         try {
-            const res = await fetch(`${API_URL}`, {
+            const res = await fetch(`${API_URL}/analyze`, {
                 method: "POST",
                 body: formData,
             });
