@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import "./App.css";
+const API_URL = import.meta.env.VITE_API_URL;
 
 export default function App() {
     const [adsFile, setAdsFile] = useState(null);
@@ -86,7 +87,7 @@ export default function App() {
         setLoading(true);
 
         try {
-            const res = await fetch("https://aff-report.onrender.com/analyze", {
+            const res = await fetch(`${API_URL}/analyze`, {
                 method: "POST",
                 body: formData,
             });
