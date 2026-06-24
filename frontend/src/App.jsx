@@ -125,7 +125,7 @@ export default function App() {
 
                 {/* Shopee Files Upload */}
                 <div className="panel">
-                    <label className="panel-label">📊 Conversion Report Files:</label>
+                    <label className="panel-label">📄 Conversion Report Files:</label>
 
                     {shopeeFiles.map((file, index) => (
                         <div key={index} className="shopee-row">
@@ -159,7 +159,7 @@ export default function App() {
                         disabled={loading || !adsFile || shopeeFiles.every(f => !f)}
                         className="btn btn-primary"
                     >
-                        {loading ? "Uploading..." : "Upload"}
+                        {loading ? "ANALYZING..." : "ANALYZE"}
                     </button>
                 </div>
 
