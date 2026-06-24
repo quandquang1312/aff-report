@@ -129,7 +129,7 @@
   box-shadow: 0 8px 20px rgba(17, 24, 39, 0.12);
 }
 
-.card-ads { background: linear-gradient(135deg, #5b7cfa, #6f42c1); }
+.card-qc { background: linear-gradient(135deg, #5b7cfa, #6f42c1); }
 .card-commission { background: linear-gradient(135deg, #f06595, #e64980); }
 .card-profit { background: linear-gradient(135deg, #20c997, #0ca678); }
 

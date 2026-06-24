@@ -179,7 +179,7 @@ export default function App() {
                 {response && !response.error && response.summary && (
                     <div className="results">
                         <div className="summary-grid">
-                            <div className="summary-card card-ads">
+                            <div className="summary-card card-qc">
                                 <div className="summary-label">Total Ads</div>
                                 <div className="summary-value">{response.summary.total_ads.toLocaleString()}</div>
                             </div>
