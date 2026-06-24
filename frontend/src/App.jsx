@@ -7,7 +7,6 @@ export default function App() {
     const [shopeeFiles, setShopeeFiles] = useState([]);
     const [response, setResponse] = useState(null);
     const [loading, setLoading] = useState(false);
-    const [isInner, setIsInner] = useState(false); // NEW
     const [sortConfig, setSortConfig] = useState({
         key: null,
         direction: "asc",
@@ -79,7 +78,6 @@ export default function App() {
         const formData = new FormData();
 
         if (adsFile) formData.append("ads_file", adsFile);
-        formData.append("isInner", String(isInner)); // NEW: "true"/"false"
         shopeeFiles.forEach((file) => {
             if (file) formData.append("shopee_report_files", file);
         });
@@ -153,17 +151,6 @@ export default function App() {
                             + Add Conversion Report File
                         </button>
                     </div>
-                </div>
-
-                <div className="center checkbox-wrap">
-                    <label className="checkbox-label">
-                        <input
-                            type="checkbox"
-                            checked={isInner}
-                            onChange={(e) => setIsInner(e.target.checked)}
-                        />
-                        Chỉ SubID chạy ads?
-                    </label>
                 </div>
 
                 <div className="center">

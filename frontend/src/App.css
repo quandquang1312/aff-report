@@ -75,18 +75,6 @@
   align-items: center;
 }
 
-.checkbox-wrap {
-  margin: 16px 0;
-}
-
-.checkbox-label {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-weight: 700;
-  color: #374151;
-}
-
 .btn {
   border: none;
   border-radius: 8px;

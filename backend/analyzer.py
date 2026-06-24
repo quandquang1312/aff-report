@@ -38,7 +38,7 @@ def get_ads_by_subid(file_path):
     return result
 
 # MERGE INTO ONE DF
-def merge_data(ads, isInner, *commissions):
+def merge_data(ads, *commissions):
     all_commissions = pd.concat(commissions, ignore_index=True)
     all_commissions = (
         all_commissions.groupby("sub_id")["Hoa hồng"]
@@ -46,8 +46,7 @@ def merge_data(ads, isInner, *commissions):
         .reset_index()
     )
 
-    how = "inner" if isInner else "outer"
-    df_combined = pd.merge(ads, all_commissions, on="sub_id", how=how)
+    df_combined = pd.merge(ads, all_commissions, on="sub_id", how="outer")
     for col in ["ads", "Hoa hồng"]:
         df_combined[col] = (
             pd.to_numeric(df_combined[col], errors="coerce")
@@ -72,11 +71,11 @@ def merge_data(ads, isInner, *commissions):
     return df_combined
 
 # API FastAPI
-def analyze(ads_file, isInner, shopee_report_files):
+def analyze(ads_file, shopee_report_files):
     ads1        = get_ads_by_subid(ads_file)
     commissions = [get_commission_by_subid(path) for path in shopee_report_files]
 
-    df = merge_data(ads1, isInner, *commissions)
+    df = merge_data(ads1, *commissions)
 
     total_ads = int(pd.to_numeric(df["ads"], errors="coerce").fillna(0).sum())
     total_commission = int(pd.to_numeric(df["Hoa hồng"], errors="coerce").fillna(0).sum())

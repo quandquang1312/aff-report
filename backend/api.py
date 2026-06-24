@@ -26,7 +26,6 @@ def home():
 @app.post("/analyze")
 async def analyze_report(
     ads_file: UploadFile = File(...),
-    isInner: bool = Form(False),
     shopee_report_files: list[UploadFile] = File(...)
 ):
     ads_path = await save_file(ads_file)
@@ -34,7 +33,6 @@ async def analyze_report(
 
     result = analyze(
         ads_path,
-        isInner,
         shopee_paths
     )
 
