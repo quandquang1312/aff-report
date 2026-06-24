@@ -11,15 +11,6 @@ function CopyableNumber({ value }) {
     );
 }
 
-function CopyableNumberHeadline({ value }) {
-    const display = value.toLocaleString();
-    return (
-        <span className="copyable-number-headline" data-display={display}>
-            {value}
-        </span>
-    );
-}
-
 export default function App() {
     const [adsFile, setAdsFile] = useState(null);
     const [shopeeFiles, setShopeeFiles] = useState([]);
@@ -184,18 +175,14 @@ export default function App() {
                 {response && !response.error && response.summary && (
                     <div className="results">
                         <div className="summary-grid">
-                            <div className="summary-card card-qc">
+                            <div className="summary-card card-ads">
                                 <div className="summary-label">Total Ads</div>
-                                <div className="summary-value">
-                                    <CopyableNumberHeadline value={response.summary.total_ads} />
-                                </div>
+                                <div className="summary-value">{response.summary.total_ads.toLocaleString()}</div>
                             </div>
 
                             <div className="summary-card card-commission">
                                 <div className="summary-label">Total Hoa hồng</div>
-                                <div className="summary-value">
-                                    <CopyableNumberHeadline value={response.summary.total_commission} />
-                                </div>
+                                <div className="summary-value">{response.summary.total_commission.toLocaleString()}</div>
                             </div>
 
                             <div className="summary-card card-profit">

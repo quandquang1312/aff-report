@@ -215,13 +215,3 @@
   content: attr(data-display);
   font-size: 18px;
 }
-
-/* Ẩn số thuần, hiển thị số có dấu phẩy từ attribute */
-.copyable-number-headline {
-  font-size: 0;
-}
-
-.copyable-number-headline::before {
-  content: attr(data-display);
-  font-size: 30px;
-}
