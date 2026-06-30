@@ -3,17 +3,22 @@ import pandas as pd
 # SHOPEE REPORT
 def get_commission_by_subid(file_path):
     df = pd.read_csv(file_path)
-    df_selected = df.iloc[:, [36, 41]].rename(
+    df_selected = df[["Hoa hồng ròng tiếp thị liên kết(₫)", "Sub_id1", "ID đơn hàng"]].rename(
         columns={
             "Hoa hồng ròng tiếp thị liên kết(₫)": "Hoa hồng",
-            "Sub_id1": "sub_id"
+            "Sub_id1": "sub_id",
+            "ID đơn hàng": "order_id",
         }
     )
 
     result = (
-        df_selected.groupby("sub_id")["Hoa hồng"]
-        .sum()
-        .reset_index()
+        df_selected.groupby("sub_id", as_index=False)
+        .agg(
+            **{
+                "Hoa hồng": ("Hoa hồng", "sum"),
+                "Đơn hàng": ("order_id", "nunique"),
+            }
+        )
     )
 
     return result
@@ -41,13 +46,17 @@ def get_ads_by_subid(file_path):
 def merge_data(ads, *commissions):
     all_commissions = pd.concat(commissions, ignore_index=True)
     all_commissions = (
-        all_commissions.groupby("sub_id")["Hoa hồng"]
-        .sum()
-        .reset_index()
+        all_commissions.groupby("sub_id", as_index=False)
+        .agg(
+            **{
+                "Hoa hồng": ("Hoa hồng", "sum"),
+                "Đơn hàng": ("Đơn hàng", "sum"),
+            }
+        )
     )
 
     df_combined = pd.merge(ads, all_commissions, on="sub_id", how="outer")
-    for col in ["ads", "Hoa hồng"]:
+    for col in ["ads", "Hoa hồng", "Đơn hàng"]:
         df_combined[col] = (
             pd.to_numeric(df_combined[col], errors="coerce")
             .replace([float("inf"), float("-inf")], pd.NA)
